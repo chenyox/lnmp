@@ -80,7 +80,6 @@ Init_Install()
     Disable_Selinux
     Check_Download
     Install_Libiconv
-    Install_Mcrypt
     Install_Freetype
     Install_Pcre
     Install_Icu4c
