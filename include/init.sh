@@ -466,7 +466,7 @@ Check_Download()
 {
     Echo_Blue "[+] Downloading files..."
     cd ${cur_dir}/src
-    Download_Files https://ftp.gnu.org/gnu/libiconv/${Libiconv_Ver}.tar.gz ${Libiconv_Ver}.tar.gz
+    Download_Files https://mirrors.kernel.org/gnu/libiconv/${Libiconv_Ver}.tar.gz ${Libiconv_Ver}.tar.gz
     Download_Files https://sourceforge.net/projects/mcrypt/files/Libmcrypt/2.5.8/${LibMcrypt_Ver}.tar.gz ${LibMcrypt_Ver}.tar.gz
     Download_Files https://sourceforge.net/projects/mcrypt/files/MCrypt/2.6.8/${Mcypt_Ver}.tar.gz ${Mcypt_Ver}.tar.gz
     Download_Files https://sourceforge.net/projects/mhash/files/mhash/0.9.9.9/${Mhash_Ver}.tar.bz2 ${Mhash_Ver}.tar.bz2
@@ -565,7 +565,7 @@ Install_Autoconf()
 {
     Echo_Blue "[+] Installing ${Autoconf_Ver}"
     cd ${cur_dir}/src
-    Download_Files https://ftp.gnu.org/gnu/autoconf/${Autoconf_Ver}.tar.gz ${Autoconf_Ver}.tar.gz
+    Download_Files https://mirrors.kernel.org/gnu/autoconf/${Autoconf_Ver}.tar.gz ${Autoconf_Ver}.tar.gz
     Tar_Cd ${Autoconf_Ver}.tar.gz ${Autoconf_Ver}
     ./configure --prefix=/usr/local/autoconf-2.13
     Make_Install
@@ -638,9 +638,10 @@ Install_Freetype()
         Tar_Cd ${Freetype_New_Ver}.tar.xz ${Freetype_New_Ver}
         ./configure --prefix=/usr/local/freetype --enable-freetype-config
     else
-        Download_Files https://download.savannah.gnu.org/releases/freetype/${Freetype_Ver}.tar.bz2 ${Freetype_Ver}.tar.bz2
+        Freetype_Version=${Freetype_Ver#freetype-}
+        Download_Files https://downloads.sourceforge.net/project/freetype/freetype2/${Freetype_Version}/${Freetype_Ver}.tar.xz ${Freetype_Ver}.tar.xz
         Echo_Blue "[+] Installing ${Freetype_Ver}"
-        Tar_Cd ${Freetype_Ver}.tar.bz2 ${Freetype_Ver}
+        Tar_Cd ${Freetype_Ver}.tar.xz ${Freetype_Ver}
         ./configure --prefix=/usr/local/freetype
     fi
     Make_Install
